@@ -1,12 +1,11 @@
 #include <stdio.h>
+#include <math.h>
 
-// Estrutura para representar um polinômio
 typedef struct {
     int grau;
     double coeficientes[100];
 } Polinomio;
 
-// Função para calcular a derivada de um polinômio
 Polinomio derivada(Polinomio p) {
     Polinomio dp;
     dp.grau = p.grau - 1;
@@ -16,7 +15,6 @@ Polinomio derivada(Polinomio p) {
     return dp;
 }
 
-// Função para calcular o valor de um polinômio em um ponto
 double valor(Polinomio p, double x) {
     double valor = 0;
     for (int i = 0; i <= p.grau; i++) {
@@ -25,10 +23,9 @@ double valor(Polinomio p, double x) {
     return valor;
 }
 
-// Função para imprimir um polinômio
 void imprimirPolinomio(Polinomio p) {
     for (int i = p.grau; i >= 0; i--) {
-        printf("%lfx^%d ", p.coeficientes[i], i);
+        printf("%.2fx^%d ", p.coeficientes[i], i);
         if (i > 0) {
             printf("+ ");
         }
@@ -40,7 +37,7 @@ int main() {
     int continuar = 1;
     while (continuar) {
         Polinomio p;
-        printf("Qual o grau do polinômio? ");
+        printf("Qual o grau do polinomio? ");
         scanf("%d", &p.grau);
         for (int i = p.grau; i >= 0; i--) {
             printf("Digite o coeficiente de x^%d: ", i);
@@ -53,7 +50,7 @@ int main() {
         imprimirPolinomio(dp);
 
         double a;
-        printf("Deseja calcular o valor funcional f'(a)? (1 para sim, 0 para não) ");
+        printf("Deseja calcular o valor funcional f'(a)? (1 para sim, 0 para nao) ");
         int calcular;
         scanf("%d", &calcular);
         if (calcular) {
@@ -61,20 +58,20 @@ int main() {
             scanf("%lf", &a);
             double fa = valor(p, a);
             double dfa = valor(dp, a);
-            printf("a = %lf, f(a) = %lf, f'(a) = %lf\n", a, fa, dfa);
+            printf("a = %.2f, f(a) = %.2f, f'(a) = %.2f\n", a, fa, dfa);
         }
 
-        printf("Deseja calcular a equação da reta tangente ao gráfico de f(x) no ponto P = (a, f(a))? (1 para sim, 0 para não) ");
+        printf("Deseja calcular a equacao da reta tangente ao grafico de f(x) no ponto P = (a, f(a))? (1 para sim, 0 para nao) ");
         scanf("%d", &calcular);
         if (calcular) {
             printf("Para qual valor de a gostaria de calcular? ");
             scanf("%lf", &a);
             double fa = valor(p, a);
             double dfa = valor(dp, a);
-            printf("A equação da reta tangente ao gráfico de f(x) no ponto P = (%lf, %lf) será y = %lfx + %lf\n", a, fa, dfa, fa - dfa*a);
+            printf("A equacao da reta tangente ao grafico de f(x) no ponto P = (%.2f, %.2f) sera y = %.2fx + %.2f\n", a, fa, dfa, fa - dfa*a);
         }
 
-        printf("Deseja calcular a derivada para outra função? (1 para sim, 0 para não) ");
+        printf("Deseja calcular a derivada para outra funcao? (1 para sim, 0 para nao) ");
         scanf("%d", &continuar);
     }
 
