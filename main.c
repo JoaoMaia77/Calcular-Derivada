@@ -1,14 +1,16 @@
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
 
 typedef struct {
     int grau;
-    double coeficientes[100];
+    double *coeficientes;
 } Polinomio;
 
 Polinomio derivada(Polinomio p) {
     Polinomio dp;
     dp.grau = p.grau - 1;
+    dp.coeficientes = (double *)malloc((dp.grau + 1) * sizeof(double));
     for (int i = 0; i < p.grau; i++) {
         dp.coeficientes[i] = p.coeficientes[i+1] * (i + 1);
     }
@@ -25,9 +27,11 @@ double valor(Polinomio p, double x) {
 
 void imprimirPolinomio(Polinomio p) {
     for (int i = p.grau; i >= 0; i--) {
-        printf("%.2fx^%d ", p.coeficientes[i], i);
-        if (i > 0) {
-            printf("+ ");
+        if (p.coeficientes[i] != 0) {
+            printf("%.2fx^%d ", p.coeficientes[i], i);
+            if (i > 0) {
+                printf("+ ");
+            }
         }
     }
     printf("\n");
@@ -38,10 +42,18 @@ int main() {
     while (continuar) {
         Polinomio p;
         printf("Qual o grau do polinomio? ");
-        scanf("%d", &p.grau);
-        for (int i = p.grau; i >= 0; i--) {
-            printf("Digite o coeficiente de x^%d: ", i);
-            scanf("%lf", &p.coeficientes[i]);
+        if (scanf("%d", &p.grau) != 1 || p.grau < 0) {
+            printf("Entrada inválida! Tente novamente.\n");
+            continue;
+        }
+p.coeficientes = (double *)malloc((p.grau + 1) * sizeof(double));
+        int validInput = 1; // Variável de controle
+        for (int i = p.grau; i >= 0 && validInput; i--) {
+          printf("Digite o coeficiente de x^%d: ", i);
+          if (scanf("%lf", &p.coeficientes[i]) != 1) {
+           printf("Entrada inválida! Tente novamente.\n");
+           validInput = 0; // Se a entrada for inválida, altere a variável de controle
+          }
         }
         printf("f(x) = ");
         imprimirPolinomio(p);
@@ -55,7 +67,10 @@ int main() {
         scanf("%d", &calcular);
         if (calcular) {
             printf("Qual o valor de a? ");
-            scanf("%lf", &a);
+            if (scanf("%lf", &a) != 1) {
+                printf("Entrada inválida! Tente novamente.\n");
+                continue;
+            }
             double fa = valor(p, a);
             double dfa = valor(dp, a);
             printf("a = %.2f, f(a) = %.2f, f'(a) = %.2f\n", a, fa, dfa);
@@ -65,7 +80,10 @@ int main() {
         scanf("%d", &calcular);
         if (calcular) {
             printf("Para qual valor de a gostaria de calcular? ");
-            scanf("%lf", &a);
+            if (scanf("%lf", &a) != 1) {
+                printf("Entrada inválida! Tente novamente.\n");
+                continue;
+            }
             double fa = valor(p, a);
             double dfa = valor(dp, a);
             printf("A equacao da reta tangente ao grafico de f(x) no ponto P = (%.2f, %.2f) sera y = %.2fx + %.2f\n", a, fa, dfa, fa - dfa*a);
@@ -73,6 +91,10 @@ int main() {
 
         printf("Deseja calcular a derivada para outra funcao? (1 para sim, 0 para nao) ");
         scanf("%d", &continuar);
+
+        // Liberando a memória alocada
+        free(p.coeficientes);
+        free(dp.coeficientes);
     }
 
     return 0;
