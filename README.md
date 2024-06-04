@@ -2,7 +2,7 @@
 Este é um projeto para a disciplina de Cálculo 1 na PUC Minas. O objetivo é estudar e codificar algoritmos para resolver problemas sobre funções polinomiais e suas derivadas.
 
 ## Grupo
-Este trabalho foi elaborado por um grupo de 4 pessoas.
+Este trabalho foi elaborado por um grupo de 4 pessoas.<br>
 https://github.com/PaulaNogueiraC<br>
 https://github.com/alicecazati<br>
 
