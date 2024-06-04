@@ -5,6 +5,7 @@ Este é um projeto para a disciplina de Cálculo 1 na PUC Minas. O objetivo é e
 Este trabalho foi elaborado por um grupo de 4 pessoas.<br>
 https://github.com/PaulaNogueiraC<br>
 https://github.com/alicecazati<br>
+https://github.com/D4v1G0D01
 
 
 ## Tarefas
