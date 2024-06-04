@@ -3,8 +3,8 @@ Este é um projeto para a disciplina de Cálculo 1 na PUC Minas. O objetivo é e
 
 ## Grupo
 Este trabalho foi elaborado por um grupo de 4 pessoas.
-https://github.com/PaulaNogueiraC
-https://github.com/alicecazati
+https://github.com/PaulaNogueiraC<br>
+https://github.com/alicecazati<br>
 
 
 ## Tarefas
