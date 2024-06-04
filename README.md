@@ -3,6 +3,9 @@ Este é um projeto para a disciplina de Cálculo 1 na PUC Minas. O objetivo é e
 
 ## Grupo
 Este trabalho foi elaborado por um grupo de 4 pessoas.
+https://github.com/PaulaNogueiraC
+https://github.com/alicecazati
+
 
 ## Tarefas
 O programa que desenvolvemos realiza cálculos envolvendo as regras de derivação. Aqui estão alguns dos recursos que nosso programa oferece:
